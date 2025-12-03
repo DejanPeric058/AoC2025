@@ -6,14 +6,13 @@ with open(folder+"/03.txt") as f:
 commands = text.split('\n')
 commands = [[int(a) for a in r] for r in commands]
 output_joltage = 0
+number_of_digits = 12
 for row in commands:
-    first, second = 0, 0
-    for i, a in enumerate(row):
-        if a > first and i < len(row) -1:
-            first = a
-            second = row[i+1]
-        elif a > second:
-            second = a 
-    # print(first,second)
-    output_joltage += first*10 + second
+    digits = [0 for _ in range(number_of_digits)]
+    for i in range(len(row)-number_of_digits+1):
+        for j, d in enumerate(digits):
+            if row[i+j] > d:
+                digits[j:] = row[i+j:i+number_of_digits]
+    e = int(''.join([str(x) for x in digits]))
+    output_joltage += e
 print(output_joltage)
