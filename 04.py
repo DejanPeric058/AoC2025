@@ -17,9 +17,15 @@ def is_accessible(i,j):
         for l in range(-1,2):
             if commands[i+k][j+l] == '@':
                 count +=1
-    return 1 if count < 5 else 0
-
-for i in range(1,n+1):
-    for j in range(1,m+1):
-        counter += is_accessible(i,j)
+    if count < 5:
+        commands[i][j] = '.'
+        return 1
+    return 0
+temp_counter = -1
+while temp_counter != 0:
+    temp_counter = 0
+    for i in range(1,n+1):
+        for j in range(1,m+1):
+            temp_counter += is_accessible(i,j)
+    counter += temp_counter
 print(counter)
