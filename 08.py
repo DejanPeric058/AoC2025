@@ -38,10 +38,15 @@ def join_circuits(nearest_list):
         if len(count) == 2:
             circuits[min(count)] = circuits[min(count)].union(circuits[max(count)])
             circuits = circuits[:max(count)] + circuits[max(count)+1:]
+        if len(circuits) == 1:
+            return new_circuit
+    print(new_circuit)
     return circuits
-sez_of_the_nearest = find_the_nearest(commands, 1000)
+sez_of_the_nearest = find_the_nearest(commands, 6000)
 c = join_circuits(sez_of_the_nearest)
+print(c)
 ff = [len(f) for f in c]
 ff.sort(reverse=True)
 # print(c,ff)
-print(ff[0]*ff[1]*ff[2])
+# print(ff[0]*ff[1]*ff[2])
+print(51125*62719)
